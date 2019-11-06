@@ -6,9 +6,9 @@ namespace FluentBuilder
     {
         private Email email;
 
-        public EmailBuilder()
+        public EmailBuilder(string recipientAddress)
         {
-            email = new Email();
+            email = new Email {To = new MailAddress(recipientAddress)};
         }
 
         public EmailBuilder From(string fromAddress)
@@ -18,13 +18,6 @@ namespace FluentBuilder
             return this;
         }
 
-        public EmailBuilder To(string toAddress)
-        {
-            email.To = new MailAddress(toAddress);
-
-            return this;
-        }
-        
         public EmailBuilder Cc(string copyAddress)
         {
             email.CC.Add(new MailAddress(copyAddress));
@@ -39,13 +32,11 @@ namespace FluentBuilder
             return this;
         }
 
-        public EmailBuilder Content(string content)
+        public Email GetResultMessage(string content)
         {
             email.Content = content;
 
-            return this;
+            return email;
         }
-
-        public Email Result => email;
     }
 }

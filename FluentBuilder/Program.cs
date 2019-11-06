@@ -6,13 +6,11 @@ namespace FluentBuilder
     {
         static void Main(string[] args)
         {
-            var email = Email.Builder
-                .To("usu.courses@gmail.com")
+            var email = Email.SendTo("usu.courses@gmail.com")
                 .From("chugaev1998@gmail.com")
                 .Cc("example@example.com")
                 .Subject("Homework")
-                .Content("it's my third homework")
-                .Result;
+                .GetResultMessage("it's my third homework");
         }
     }
 }
